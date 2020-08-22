@@ -147,7 +147,7 @@
                        (and (string-suffix? last-name stem) last-name))
                      (map person-last-name people))))
       (if (not name)
-          (cons stem (reverse names))
+          (cons stem names)
           (loop (cons name names)
                 (substring stem 0 (- (string-length stem)
                                      (string-length name))))))))
