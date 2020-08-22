@@ -143,8 +143,7 @@
 
 (define (split-author-names stem)
   (let loop ((names '()) (stem stem))
-    (let ((name (any (lambda (last-name)
-                       (and (string-suffix? last-name stem) last-name))
+    (let ((name (any (lambda (name) (and (string-suffix? name stem) name))
                      (map person-last-name people))))
       (if (not name)
           (cons stem names)
