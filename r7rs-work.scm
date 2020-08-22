@@ -95,7 +95,7 @@
     "SixRejection"
     ))
 
-(define (editorial? stem)
+(define (editorial-page? stem)
   (any (lambda (candidate) (string-contains stem candidate))
        '("Docket" "Edition" "Draft" "WG1" "WG2")))
 
@@ -104,18 +104,16 @@
        people))
 
 (define (relevant? stem)
-  (not (or (personal-page? stem)
+  (not (or (editorial-page? stem)
+           (personal-page? stem)
            (member stem surveys)
-           (member stem ideas)
-           (editorial? stem))))
+           (member stem ideas))))
 
 (define (split-author-names stem)
   (let loop ((names '()) (stem stem))
-    (let ((name (any (lambda (person)
-                       (let ((last-name (person-last-name person)))
-                         (and (string-suffix? last-name stem)
-                              last-name)))
-                     people)))
+    (let ((name (any (lambda (last-name)
+                       (and (string-suffix? last-name stem) last-name))
+                     (map person-last-name people))))
       (if (not name)
           (cons stem (reverse names))
           (loop (cons name names)
