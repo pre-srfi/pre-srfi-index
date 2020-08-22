@@ -23,6 +23,7 @@
 
 (define people
   '(
+    ("Breuel")
     ("Cowan")
     ("Curtis")
     ("Durusau" "PatrickDurusau")
@@ -41,10 +42,12 @@
     ("Shivers" "OlinShivers")
     ("SnellPym" "AlaricSnellPym")
     ("Sussman" "GeraldSussman")
-
+    ("Wise")
+    ("Wortman")
+    ;;
     ("Arcfide" "AaronHsu")
     ("Riastradh")
-
+    ;;
     ("Alexandria")
     ("Gauche")
     ("MIT")
@@ -57,10 +60,11 @@
 (define ideas
   '(
     "BottomScheme"
+    "CharsetDefinitions"
     "CL-R"
+    "DivisionUseCases"
     "ExpressionLanguage"
     "FatArch"
-    "DivisionUseCases"
     "ImplementationsMay"
     "ImplementationsShould"
     ))
@@ -70,26 +74,53 @@
     "ApplyArgsLimit"
     "ArgumentOrder"
     "BackslashBar"
-    "HashBangEof"
     "BracketsBraces"
     "CallCc"
     "CaseInsensitivity"
     "CaseSensitivity"
-    "ChezReplSemantics"
     "CaseSensitivityArcfide"
+    "ChezReplSemantics"
+    "CommaInIdentifiers"
     "CompilerAvailable"
     "ComplexLog"
     "ComplexRepresentations"
     "CondExpand"
     "CondExpandShinn"
+    "CwifClosePort"
+    "DotComma"
     "EmptyList"
     "EmptyStringsVectors"
+    "EvalDefine"
+    "ExactExpt"
+    "ExactSqrt"
     "ExceptionTaxonomies"
+    "FiveToSixToSeven"
     "FixnumInfo"
     "FloatPrecision"
+    "HashBangEof"
+    "HashQuote"
+    "HygienicInclusion"
+    "ImmediateStringsCoalesced"
     "ImplementationContrasts"
     "ImplementationSupport"
-    "DotComma"
+    "ImproperLists"
+    "LetrecStar"
+    "LiSPTopLevels"
+    "MaxInfNan"
+    "ModuleSyntax"
+    "ModuleSystemSurvey"
+    "MultipleValues"
+    "NegativeRationalize"
+    "NilIsFalse"
+    "NonFiniteNumbers"
+    "NonFiniteSyntax"
+    "NumericTower"
+    "OnePlusEx"
+    "Optionality"
+    "R7RSMUSTard"
+    "RationalizeDefinition"
+    "ReadLine"
+    "ReadMutable"
     "SchemeOnWindows"
     "SelfQuotingVectors"
     "SixRejection"
@@ -97,7 +128,8 @@
 
 (define (editorial-page? stem)
   (any (lambda (candidate) (string-contains stem candidate))
-       '("Docket" "Edition" "Draft" "WG1" "WG2")))
+       '("Docket" "Edition" "Draft" "Summary" "WG1" "WG2"
+         "WorkingGroup" "WokringGroup")))
 
 (define (personal-page? stem)
   (any (lambda (person) (member stem (person-full-names person)))
