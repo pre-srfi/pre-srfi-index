@@ -152,10 +152,24 @@
                 (substring stem 0 (- (string-length stem)
                                      (string-length name))))))))
 
+(define (stem->table-row stem)
+  (let* ((stem+names (split-author-names stem))
+         (stem (car stem+names))
+         (names (cdr stem+names)))
+    (string-append "|"
+                   base-url stem (string-join names "") ".md"
+                   "[" stem "]"
+                   "|"
+                   (string-join names ", "))))
+
+(define (markdown? filename) (string-suffix-ci? ".md" filename))
+
 (define (main)
   (for-each displayln
-            (map split-author-names
+            (map stem->table-row
                  (filter relevant?
-                         (map filename-stem (read-all-lines))))))
+                         (map filename-stem
+                              (filter markdown?
+                                      (read-all-lines)))))))
 
 (main)
